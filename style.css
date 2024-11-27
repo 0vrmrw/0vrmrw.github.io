@@ -22,7 +22,7 @@ nav .logo a{
    text-decoration: none;
 }
 nav .logo a:hover{
-   color: #BED4F7;
+   color: #0A7494;
    transition: all 0.4s ease 0s;
 }
 nav ul{
@@ -40,7 +40,7 @@ nav li a{
    text-decoration: none;
 }
 nav li a:hover{
-   color: #BED4F7;
+   color: #0A7494;
    transition: all 0.4s ease 0s;
 }
 h1{
