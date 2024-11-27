@@ -97,3 +97,9 @@ nav ul li a, .dropbtn {
     margin-right: 25px;
     margin-left: 15px;
 }
+
+.boxed-text { 
+    border: 2px solid black;
+    padding: 10px;
+    margin: 20px;
+}
