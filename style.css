@@ -1,4 +1,4 @@
-*{
+7*{
    margin: 0px;
    padding: 0px;
    box-sizing: border-box;
@@ -52,6 +52,7 @@ h2{
    font-size: 30px;
    text-transform: uppercase;
    color: black;
+   margin: 15px;
 }
 p{
    font-size: 20px;
