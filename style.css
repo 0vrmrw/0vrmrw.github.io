@@ -88,3 +88,11 @@ nav ul li a, .dropbtn {
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+.container {
+    display: flex;
+    align-items: center;
+}
+.image {
+    margin-right: 15px;
+}
