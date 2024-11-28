@@ -13,6 +13,7 @@ function generatePrompt() {
     const prompt = prompts[dayOfYear % prompts.length]; 
     document.getElementById("prompt").innerText = prompt; } 
 window.onload = generatePrompt();
+console.log(generatePrompt())
 
 
 
