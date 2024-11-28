@@ -126,7 +126,7 @@ textarea {
    box-sizing: border-box; 
    font-size: 16px;
    margin-bottom: 10px
-   align-item: center;
+   text-align: center;
 }
 
 input[type="submit"] { 
