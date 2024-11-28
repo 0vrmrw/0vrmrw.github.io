@@ -91,7 +91,7 @@ nav ul li a, .dropbtn {
 
 .container {
     display: flex;
-    align-items: left;
+    align-items: center;
 }
 .image {
     margin-right: 25px;
