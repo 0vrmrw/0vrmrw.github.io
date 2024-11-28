@@ -12,7 +12,7 @@ function generatePrompt() {
     const dayOfYear = Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24); 
     const prompt = prompts[dayOfYear % prompts.length]; 
     document.getElementById("prompt").innerText = prompt; } 
-window.onload = console.log(generatePrompt());
+window.onload = generatePrompt();
 
 
 
