@@ -114,8 +114,6 @@ nav ul li a, .dropbtn {
 }
 
 label { 
-   display: block; 
-   margin-bottom: 10px; 
    font-weight: bold; 
 } 
 
@@ -127,4 +125,23 @@ textarea {
    border-radius: 8px; 
    box-sizing: border-box; 
    font-size: 16px;
+   margin-bottom: 10px
+}
+
+input[type="submit"] { 
+   background-color: #007BFF; 
+   color: white; 
+   border: none; 
+   padding: 10px 20px; 
+   border-radius: 5px; 
+   cursor: pointer; 
+} 
+
+input[type="submit"]:hover { 
+   background-color: #0056b3; 
+} 
+
+#streakDisplay { 
+   font-size: 18px; 
+   margin-top: 20px; 
 }
