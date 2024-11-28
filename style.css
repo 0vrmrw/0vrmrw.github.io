@@ -111,6 +111,7 @@ nav ul li a, .dropbtn {
    border: 2px solid #012733; 
    border-radius: 8px; 
    justify-content: center;
+   align-items: center;
 }
 
 label { 
