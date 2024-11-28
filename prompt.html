@@ -29,9 +29,13 @@
 	     <br><br>
 	     
 	     <div class="container"> 
-		     <label for="largeTextBox">Start Writing Here! -> </label> 
-		     <textarea id="largeTextBox" rows="10" cols="50"></textarea>
-	     </div>
+		     <h1>Daily Submission Streak</h1> 
+		     <form id="streakForm"> 
+			     <label for="dailyInput">Enter your text:</label> 
+			     <textarea id="dailyInput" rows="4" cols="50" required></textarea><br><br> 
+			     <input type="submit" value="Submit"> 
+		     </form> 
+		     <p id="streakDisplay">Current Streak: 0 days</p> </div>
     		<script src="prompts.js"></script>
       </body>
 </html>
