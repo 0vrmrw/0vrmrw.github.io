@@ -104,3 +104,24 @@ nav ul li a, .dropbtn {
     border-radius: 15px;
     width: 825px;
 }
+
+.prompt-box { 
+   margin: 20px 0; 
+   padding: 10px; 
+   border: 2px solid #007BFF; 
+   border-radius: 8px; 
+   background-color: #e6f7ff; 
+}
+
+button { 
+   background-color: #007BFF; 
+   color: white;
+   border: none; 
+   padding: 10px 20px; 
+   border-radius: 5px; 
+   cursor: pointer; 
+}
+
+button:hover { 
+   background-color: #0056b3; 
+}
