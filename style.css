@@ -109,7 +109,6 @@ nav li p {
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
    display: flex;
    flex-direction: column; 
-   justify-content: center; 
    align-items: center;
 }
 
@@ -149,6 +148,7 @@ textarea {
    box-sizing: border-box;
    font-size: 16px;
    margin-bottom: 10px; 
+   align-items: center;
 } 
 
 input[type="submit"] {
