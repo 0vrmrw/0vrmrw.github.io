@@ -91,8 +91,6 @@ nav li p {
 }
 
 .container1 {
-   hight: auto;
-   width: auto;
    display: flex;
 }
 
@@ -115,7 +113,6 @@ nav li p {
    margin: 20px; 
    border-radius: 15px; 
    width: 825px; 
-   hight: auto; 
 }
 
 .prompt-box {
