@@ -161,8 +161,8 @@ nav li p {
    text-transform: uppercase;
    color: white;
    text-decoration: none;
-   padding-top: 20px
    display: flex; 
+   padding-top: 20px
    align-items: center; 
    justify-content: center;
    height: 100%; 
