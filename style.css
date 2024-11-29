@@ -62,11 +62,11 @@ nav li a:hover {
 nav ul li a, .dropbtn { 
    display: inline-block; 
    color: white;  
-   padding: 0 30px; 
    text-decoration: none; 
+   display: flex;
    align-items: center;
-   justify-content: center;
-   padding-top: 20px;
+   height: 100%; 
+   padding-top: 20px
 }
 
 .dropdown { 
