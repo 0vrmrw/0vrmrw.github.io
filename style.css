@@ -109,14 +109,14 @@ nav li p {
    margin-right: 25px;
 } 
 
-.boxed-text { 
+/* .boxed-text { 
    border: 2px solid black; 
    padding: 10px; 
    margin: 20px; 
    border-radius: 15px; 
    width: 825px; 
    hight: auto; 
-}
+} */
 
 .prompt-box {
    margin: 20px 0; 
