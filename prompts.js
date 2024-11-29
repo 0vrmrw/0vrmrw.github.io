@@ -44,26 +44,3 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('streak', streak); localStorage.setItem('lastSubmitDate', today);
     streakDisplay.textContent = `🔥${streak} `;
   } 
-  
-  function countWords(str) {
-    return str.trim().split(/\s+/).length;
-  } 
-  
-  streakForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const wordCount = countWords(dailyInput.value); 
-    if (wordCount < 250) {
-      errorMessage.style.display = 'block'; 
-      errorMessage.textContent = 'Your text must be at least 250 words long.'; 
-    } else { 
-      errorMessage.style.display = 'none';
-      updateStreak(); 
-      lastSubmitDate = new Date().toDateString();
-      streakForm.reset(); }
-  }); 
-  
-  streakDisplay.textContent = `🔥${streak} `;
-});
-
-
-
