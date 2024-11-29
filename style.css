@@ -10,6 +10,7 @@ nav{
    padding: 0px 100px;
    position: fixed;
    background-image: linear-gradient(#033747, #012733);
+   align-items: center;
 }
 nav .logo a{
    font-size:25px;
