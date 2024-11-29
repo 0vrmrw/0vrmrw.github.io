@@ -14,42 +14,45 @@ function generatePrompt() {
     document.getElementById("prompt").innerText = prompt; } 
 window.onload = generatePrompt();
 
-document.addEventListener('DOMContentLoaded', () => { 
-  const streakDisplay = document.getElementById('streakDisplay');
-  const streakForm = document.getElementById('streakForm');
+document.addEventListener('DOMContentLoaded', () => {
+  const streakDisplay = document.getElementById('streakDisplay'); 
+  const streakForm = document.getElementById('streakForm'); 
+  const dailyInput = document.getElementById('dailyInput'); 
+  const errorMessage = document.getElementById('error-message'); 
   
-  let streak = parseInt(localStorage.getItem('streak')) || 0;
-  let lastSubmitDate = localStorage.getItem('lastSubmitDate');
+  let streak = parseInt(localStorage.getItem('streak')) || 0; 
+  let lastSubmitDate = localStorage.getItem('lastSubmitDate'); 
   
-function updateStreak() {
-  const today = new Date().toDateString();
-  
-  if (lastSubmitDate && new Date(today) - new Date(lastSubmitDate) === 86400000) {
-    streak += 1; 
-  } else if (lastSubmitDate && new Date(today) - new Date(lastSubmitDate) > 86400000) {
-    streak = 1; 
-  } else if (!lastSubmitDate || new Date(today) - new Date(lastSubmitDate) < 86400000) {
-    streak += 0; 
-  } else {
-    streak = 1; 
+  function updateStreak() {
+    const today = new Date().toDateString();
+    
+    if (lastSubmitDate && new Date(today) - new Date(lastSubmitDate) === 86400000) {
+      streak += 1; 
+    } else if (lastSubmitDate && new Date(today) - new Date(lastSubmitDate) > 86400000) {
+      streak = 1; 
+    } else if (!lastSubmitDate || new Date(today) - new Date(lastSubmitDate) < 86400000) {
+      streak += 0; 
+    } else {
+      streak = 1; 
+    } 
+    
+    localStorage.setItem('streak', streak);
+    localStorage.setItem('lastSubmitDate', today);
+    streakDisplay.textContent = `🔥${streak} `; 
   } 
-  
-  localStorage.setItem('streak', streak);
-  localStorage.setItem('lastSubmitDate', today);
-  streakDisplay.textContent = `Current Streak: ${streak} days`; 
-} 
   
   streakForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    updateStreak();
-    lastSubmitDate = new Date().toDateString();
-    streakForm.reset(); 
-  }); 
+    if (dailyInput.value.length < 250) {
+      errorMessage.style.display = 'block'; 
+    } else {
+      errorMessage.style.display = 'none';
+      updateStreak(); 
+      lastSubmitDate = new Date().toDateString();
+      streakForm.reset(); } 
+  });
   
-  // Display the current streak on load
-  streakDisplay.textContent = `🔥 ${streak} `; 
-});
-
+  streakDisplay.textContent = `🔥${streak} `; });
 
 
 
