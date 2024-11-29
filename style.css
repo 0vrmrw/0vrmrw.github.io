@@ -168,8 +168,8 @@ nav li p {
    color: white;
    text-decoration: none;
    display: flex; 
-   padding-top: 20px
    align-items: center; 
+   padding-top: 20px
    justify-content: center;
    height: 100%; 
 }
