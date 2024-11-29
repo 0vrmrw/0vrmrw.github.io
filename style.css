@@ -134,6 +134,7 @@ nav li p {
 
 label {
    font-weight: bold; 
+   margin-bottom: 10px;
 } 
 
 textarea {
