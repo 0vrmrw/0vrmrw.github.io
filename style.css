@@ -93,6 +93,7 @@ nav ul li a, .dropbtn {
 }
 
 .container1 {
+   hight: auto;
    text-align: center;
    display: flex;
 }
