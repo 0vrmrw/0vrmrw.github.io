@@ -92,6 +92,7 @@ nav li p {
 
 .container1 {
    hight: auto;
+   width: auto;
    display: flex;
 }
 
