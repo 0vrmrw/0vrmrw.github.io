@@ -47,7 +47,7 @@ function updateStreak() {
   }); 
   
   // Display the current streak on load
-  streakDisplay.textContent = `Current Streak: ${streak} days`; 
+  streakDisplay.textContent = `🔥 ${streak} `; 
 });
 
 
