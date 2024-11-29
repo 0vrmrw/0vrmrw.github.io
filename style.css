@@ -70,6 +70,7 @@ nav ul li a, .dropbtn {
 
 .dropdown { 
    display: inline-block;
+   padding-top: 20px;
 } 
 
 .dropdown-content {
