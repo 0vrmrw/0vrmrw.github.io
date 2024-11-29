@@ -117,7 +117,7 @@ nav ul li a, .dropbtn {
    margin: 20px; 
    border-radius: 15px; 
    width: 825px; 
-} 
+   hight: auto; 
 
 .prompt-box {
    margin: 20px 0; 
