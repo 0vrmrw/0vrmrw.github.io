@@ -92,6 +92,8 @@ nav li p {
 
 .container1 {
    display: flex;
+   justify-content: center; 
+   align-items: center;
 }
 
 .container2 { 
@@ -113,6 +115,7 @@ nav li p {
    margin: 20px; 
    border-radius: 15px; 
    width: 825px; 
+   display: inline-block;
 }
 
 .prompt-box {
