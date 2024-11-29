@@ -28,10 +28,12 @@ nav .logo a:hover{
 }
 nav ul{
    float: right;
+   height: 100%;
 }
 nav li{
    display: inline-block;
    list-style: none;
+   align-items: center;
 }
 nav li a{
    font-size: 15px;
