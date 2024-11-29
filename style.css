@@ -66,11 +66,11 @@ nav ul li a, .dropbtn {
    text-decoration: none; 
    align-items: center;
    justify-content: center;
+   padding-top: 20px;
 }
 
 .dropdown { 
    display: inline-block;
-   padding-top: 20px;
 } 
 
 .dropdown-content {
