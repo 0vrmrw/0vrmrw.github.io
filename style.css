@@ -133,7 +133,8 @@ nav li p {
 } 
 
 label {
-   font-weight: bold; 
+   font-weight: bold;
+   font-size: 20px;
    margin-bottom: 10px;
 } 
 
