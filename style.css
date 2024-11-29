@@ -146,3 +146,11 @@ input[type="submit"]:hover {
    font-size: 18px; 
    margin-top: 20px;
 }
+
+nav li p{
+   font-size: 15px;
+   text-transform: uppercase;
+   padding:0px 30px;
+   color: white;
+   text-decoration: none;
+}
