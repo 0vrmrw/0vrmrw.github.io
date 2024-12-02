@@ -10,7 +10,7 @@
 	              <p><a href="index.html">PlotPoint</a></p>
 	          </div>
               <ul>
-		 <li><p id="streakDisplay"> 🔥'${streak}' </p></li>
+		 <li><p id="streakDisplay"> 🔥<span id="streakValue"></span></p></li>
                  <li><a href="prompt.html">Daily Prompt</a></li>
 		 <li><a href="history.html">History</a></li>
                  <li class="dropdown">
@@ -32,10 +32,11 @@
 		     <label for="dailyInput">Start Writing Here: </label>
 		     <br>
 		     <form id="streakForm">  
+			     <form id="streakForm" onsubmit="handleFormSubmit(event)">
 			     <textarea id="dailyInput" rows="4" cols="50" required></textarea><br><br> 
 			     <input type="submit" value="Finish"> 
-			     <p id= "error-message"> Your text must be at least 250 words </p>
 		     </form> 
+		     <p id="error-message" style="display:none; color:red;"></p>
 	     </div>
     		<script src="prompts.js"></script>
       </body>
