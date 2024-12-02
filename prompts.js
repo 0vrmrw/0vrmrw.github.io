@@ -97,18 +97,27 @@ function handleFormSubmit(event) {
     document.getElementById('error-message').style.display = "none"; // Hide error message
 }
 
-// Call this function to display history on the history.html page
+// Function to display saved prompts in history.html
 function displayHistory() {
-    const history = JSON.parse(localStorage.getItem('history')) || [];
     const historyContainer = document.getElementById('historyContainer');
+    const history = JSON.parse(localStorage.getItem('history')) || [];
 
-    // Sort history by date
-    history.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // Clear previous content
+    historyContainer.innerHTML = '';
 
-    // Create HTML for each entry
-    history.forEach(entry => {
+    // Display each prompt
+    history.forEach((entry, index) => {
         const entryElement = document.createElement('div');
-        entryElement.innerHTML = `<strong>${entry.date}</strong>: ${entry.text}`;
+        entryElement.textContent = `${index + 1}: ${entry}`; // Format entry
         historyContainer.appendChild(entryElement);
     });
+
+    if (history.length === 0) {
+        historyContainer.textContent = 'No history available.';
+    }
 }
+
+// Call displayHistory when the page loads
+window.onload = function() {
+    displayHistory();
+};
