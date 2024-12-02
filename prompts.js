@@ -64,3 +64,48 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial display of streak
   streakDisplay.textContent = `🔥 ${streak}`;
 });
+
+function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const dailyInput = document.getElementById('dailyInput').value;
+    const currentDate = new Date().toLocaleDateString(); // Get the current date
+
+    // Check if input is valid
+    if (dailyInput.trim() === "") {
+        document.getElementById('error-message').innerText = "Please enter some text.";
+        document.getElementById('error-message').style.display = "block";
+        return;
+    }
+
+    // Save the input and date to localStorage
+    const historyEntry = {
+        date: currentDate,
+        text: dailyInput
+    };
+
+    // Retrieve existing history or initialize an empty array
+    const history = JSON.parse(localStorage.getItem('history')) || [];
+    history.push(historyEntry); // Add the new entry
+    localStorage.setItem('history', JSON.stringify(history)); // Save back to localStorage
+
+    // Clear the input field
+    document.getElementById('dailyInput').value = '';
+    document.getElementById('error-message').style.display = "none"; // Hide error message
+}
+
+// Call this function to display history on the history.html page
+function displayHistory() {
+    const history = JSON.parse(localStorage.getItem('history')) || [];
+    const historyContainer = document.getElementById('historyContainer');
+
+    // Sort history by date
+    history.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // Create HTML for each entry
+    history.forEach(entry => {
+        const entryElement = document.createElement('div');
+        entryElement.innerHTML = `<strong>${entry.date}</strong>: ${entry.text}`;
+        historyContainer.appendChild(entryElement);
+    });
+}
