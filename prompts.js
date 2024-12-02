@@ -96,28 +96,3 @@ function handleFormSubmit(event) {
     document.getElementById('dailyInput').value = '';
     document.getElementById('error-message').style.display = "none"; // Hide error message
 }
-
-// Function to display saved prompts in history.html
-function displayHistory() {
-    const historyContainer = document.getElementById('historyContainer');
-    const history = JSON.parse(localStorage.getItem('history')) || [];
-
-    // Clear previous content
-    historyContainer.innerHTML = '';
-
-    // Display each prompt
-    history.forEach((entry, index) => {
-        const entryElement = document.createElement('div');
-        entryElement.textContent = `${index + 1}: ${entry}`; // Format entry
-        historyContainer.appendChild(entryElement);
-    });
-
-    if (history.length === 0) {
-        historyContainer.textContent = 'No history available.';
-    }
-}
-
-// Call displayHistory when the page loads
-window.onload = function() {
-    displayHistory();
-};
