@@ -29,26 +29,7 @@
     <script src="prompts.js"></script>
     <script>
         // Call displayHistory when the page loads
-        window.onload = displayHistory;
-
-        function displayHistory() {
-            const history = JSON.parse(localStorage.getItem('history')) || [];
-            const historyContainer = document.getElementById('historyContainer');
-
-            // Sort history by date
-            history.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-            // Create HTML for each entry
-            history.forEach(entry => {
-                const entryElement = document.createElement('div');
-                entryElement.innerHTML = `<strong>${entry.date}</strong>: ${entry.text}`;
-                historyContainer.appendChild(entryElement);
-            });
-
-            if (history.length === 0) {
-                historyContainer.innerHTML = "<p>No entries found.</p>"; // Message if no entries exist
-            }
-        }
+        window.onload = displayHistory();
     </script>
 </body>
 </html>
