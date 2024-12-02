@@ -109,3 +109,8 @@ function displayHistory() {
         historyContainer.appendChild(entryElement);
     });
 }
+
+    if (history.length === 0) {
+                    historyContainer.innerHTML = "<p>No entries found.</p>"; // Message if no entries exist
+                }
+            }
