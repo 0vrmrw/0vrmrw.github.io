@@ -67,11 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function handleFormSubmit(event) {
     event.preventDefault();
-    const userInput = document.getElementById('userInputField').value; // Assuming you have an input field with this ID
+    const dailyInput = document.getElementById('dailyInput').value; // Assuming you have an input field with this ID
+    const currentDate = new Date().toLocaleDateString(); // Get the current date
     const history = JSON.parse(localStorage.getItem('history')) || [];
-    history.push(userInput);
+    history.push(dailyInput);
     localStorage.setItem('history', JSON.stringify(history));
-    document.getElementById('userInputField').value = ''; // Clear the input field after submission
+    document.getElementById('dailyInput').value = ''; // Clear the input field after submission
 }
 
     // Check if input is valid
