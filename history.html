@@ -44,7 +44,15 @@
     <div id="historyContainer"></div>
 
     <script>
-        // Function to display user input history
+        function updateStreakDisplay() {
+            const streakValue = localStorage.getItem('streak') || 0;
+            document.getElementById('streakValue').innerText = streakValue;
+        }
+
+        // Call the function to update the streak display when the page loads
+        document.addEventListener('DOMContentLoaded', updateStreakDisplay);
+		
+		// Function to display user input history
         function displayHistory() {
             const historyContainer = document.getElementById('historyContainer');
             const userInputHistory = JSON.parse(localStorage.getItem('userInputHistory')) || [];
