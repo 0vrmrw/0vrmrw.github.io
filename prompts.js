@@ -17,7 +17,10 @@ function generatePrompt() {
   document.getElementById("prompt").innerText = prompt;
 }
 
-window.onload = generatePrompt;
+window.onload = function() {
+  generatePrompt();
+  updateStreakDisplay(); // Display the initial streak
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   const streakDisplay = document.getElementById('streakDisplay');
@@ -41,6 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     localStorage.setItem('streak', streak);
     localStorage.setItem('lastSubmitDate', today);
+    updateStreakDisplay();
+  }
+
+  function updateStreakDisplay() {
     streakDisplay.textContent = `🔥 ${streak}`;
   }
 
@@ -50,50 +57,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   streakForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    const wordCount = countWords(dailyInput.value);
+    const dailyInputValue = dailyInput.value; // Get the input value
+    const wordCount = countWords(dailyInputValue);
+
     if (wordCount < 250) {
       errorMessage.style.display = 'block';
       errorMessage.textContent = 'Your text must be at least 250 words.';
     } else {
       errorMessage.style.display = 'none';
-      updateStreak();
-      streakForm.reset();
+      saveInput(dailyInputValue); // Save input if valid
+      updateStreak(); // Update the streak
+      streakForm.reset(); // Clear the input field
     }
   });
 
-  // Initial display of streak
-  streakDisplay.textContent = `🔥 ${streak}`;
-});
-
-function handleFormSubmit(event) {
-    event.preventDefault();
-    const dailyInput = document.getElementById('dailyInput').value; // Assuming you have an input field with this ID
+  function saveInput(input) {
     const currentDate = new Date().toLocaleDateString(); // Get the current date
-    const history = JSON.parse(localStorage.getItem('history')) || [];
-    history.push(dailyInput);
-    localStorage.setItem('history', JSON.stringify(history));
-    document.getElementById('dailyInput').value = ''; // Clear the input field after submission
-}
-
-    // Check if input is valid
-    if (dailyInput.trim() === "") {
-        document.getElementById('error-message').innerText = "Please enter some text.";
-        document.getElementById('error-message').style.display = "block";
-        return;
-    }
-
-    // Save the input and date to localStorage
     const historyEntry = {
-        date: currentDate,
-        text: dailyInput
+      date: currentDate,
+      text: input
     };
 
     // Retrieve existing history or initialize an empty array
     const history = JSON.parse(localStorage.getItem('history')) || [];
     history.push(historyEntry); // Add the new entry
     localStorage.setItem('history', JSON.stringify(history)); // Save back to localStorage
-
-    // Clear the input field
-    document.getElementById('dailyInput').value = '';
-    document.getElementById('error-message').style.display = "none"; // Hide error message
-}
+  }
+});
