@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>History</title>
@@ -10,7 +11,7 @@
             <p><a href="index.html">PlotPoint</a></p>
         </div>
         <ul>
-            <li><p id="streakDisplay"> 🔥<span id="streakValue"></span></p></li>
+            <li><p id="streakDisplay">🔥 <span id="streakValue">0</span></p></li>
             <li><a href="prompt.html">Daily Prompt</a></li>
             <li><a href="history.html">History</a></li>
             <li class="dropdown">
@@ -22,9 +23,35 @@
             </li>
         </ul>
     </nav>
+    
     <h1 style="text-align: center;"><br><br>History</h1>
-    <form id="streakForm" onsubmit="handleFormSubmit(event)"></form>
     <div id="historyContainer"></div>
+
     <script src="prompts.js"></script>
+    <script>
+        // Function to update the streak display
+        function updateStreakDisplay() {
+            const streakValue = localStorage.getItem('streak') || 0;
+            document.getElementById('streakValue').innerText = streakValue;
+        }
+
+        // Call the function to update the streak display when the page loads
+        document.addEventListener('DOMContentLoaded', updateStreakDisplay);
+
+        // Function to display history
+        function displayHistory() {
+            const historyContainer = document.getElementById('historyContainer');
+            const historyEntries = JSON.parse(localStorage.getItem('history')) || [];
+
+            if (historyEntries.length === 0) {
+                historyContainer.innerHTML = "<p>No history available.</p>";
+            } else {
+                historyContainer.innerHTML = historyEntries.map(entry => `<p>${entry}</p>`).join('');
+            }
+        }
+
+        // Call the function to display history when the page loads
+        document.addEventListener('DOMContentLoaded', displayHistory);
+    </script>
 </body>
 </html>
