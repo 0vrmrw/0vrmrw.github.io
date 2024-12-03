@@ -1,40 +1,54 @@
-<html>
-     <head>
-	  <meta charset="utf-8">
-          <title> Prompt </title>
-          <link rel="stylesheet" href="style.css" />
-     </head>
-     <body>  
-          <nav>
-	          <div class="logo">
-	              <p><a href="index.html">PlotPoint</a></p>
-	          </div>
-              <ul>
-		 <li><p id="streakDisplay"> 🔥<span id="streakValue"></span></p></li>
-                 <li><a href="prompt.html">Daily Prompt</a></li>
-		 <li><a href="history.html">History</a></li>
-                 <li class="dropdown">
-                 <a href="#" class="dropbtn">Writing</a>
-                     <div class="dropdown-content">
-                         <a href="tips.html">Tips</a>
-                         <a href="ideas.html">Ideas</a>
-                     </div>
-                 </li>
-             </ul>
-        </nav>
-	     <h1 style="text-align: center;"><br><br>Daily Writing Prompt</h1>
-	     <div id="prompt" class="prompt-box"></div>
-	     <br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Writing Prompt</title>
+    <link rel="stylesheet" href="style.css"> <!-- Optional: Link to your CSS file -->
+</head>
+<body>  
+    <nav>
+        <div class="logo">
+            <p><a href="index.html">PlotPoint</a></p>
+        </div>
+        <ul>
+            <li><p id="streakDisplay">🔥 <span id="streakValue">0</span></p></li>
+            <li><a href="prompt.html">Daily Prompt</a></li>
+            <li><a href="history.html">History</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Writing</a>
+                <div class="dropdown-content">
+                    <a href="tips.html">Tips</a>
+                    <a href="ideas.html">Ideas</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
 
-	     <div class="container2">  
-		     <label for="dailyInput">Start Writing Here: </label>
-		     <br>
-		     <form id="streakForm" onsubmit="handleFormSubmit(event)">
-			     <textarea id="dailyInput" rows="4" cols="50" required></textarea><br><br> 
-			     <input type="submit" value="Finish"> 
-		     </form> 
-		     <p id="error-message" style="display:none; color:red;"></p>
-	     </div>
-    		<script src="prompts.js"></script>
-      </body>
+    <h1 style="text-align: center;"><br><br>Daily Writing Prompt</h1>
+    <div id="prompt" class="prompt-box"></div>
+    <br><br>
+
+    <div class="container2">  
+        <label for="dailyInput">Start Writing Here: </label>
+        <br>
+        <form id="streakForm" onsubmit="handleFormSubmit(event)">
+            <textarea id="dailyInput" rows="4" cols="50" required></textarea><br><br> 
+            <input type="submit" value="Finish"> 
+        </form> 
+        <p id="error-message" style="display:none; color:red;"></p>
+    </div>
+
+    <script src="prompts.js"></script>
+    <script>
+        // Function to update the streak display
+        function updateStreakDisplay() {
+            const streakValue = localStorage.getItem('streak') || 0;
+            document.getElementById('streakValue').innerText = streakValue;
+        }
+
+        // Call the function to update the streak display when the page loads
+        document.addEventListener('DOMContentLoaded', updateStreakDisplay);
+    </script>
+</body>
 </html>
