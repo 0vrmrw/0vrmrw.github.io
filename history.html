@@ -2,18 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>History</title>
+    <title>User Input History</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+        h1 {
+            text-align: center;
+        }
+        #historyContainer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .history-entry {
+            padding: 10px;
+        }
+        .history-entry:last-child {
+            border-bottom: none; /* Remove border for the last entry */
+        }
+    </style>
 </head>
 <body>
-    <nav>
+	<nav>
         <div class="logo">
             <p><a href="index.html">PlotPoint</a></p>
         </div>
         <ul>
             <li><p id="streakDisplay">🔥 <span id="streakValue">0</span></p></li>
             <li><a href="prompt.html">Daily Prompt</a></li>
-            <li><a href="history.html">History</a></li>
             <li class="dropdown">
                 <a href="#" class="dropbtn">Writing</a>
                 <div class="dropdown-content">
@@ -23,31 +40,31 @@
             </li>
         </ul>
     </nav>
-    
     <h1 style="text-align: center;"><br><br>History</h1>
     <div id="historyContainer"></div>
 
-    <script src="prompts.js"></script>
     <script>
-        // Function to update the streak display
-        function updateStreakDisplay() {
-            const streakValue = localStorage.getItem('streak') || 0;
-            document.getElementById('streakValue').innerText = streakValue;
-        }
-
-        // Call the function to update the streak display when the page loads
-        document.addEventListener('DOMContentLoaded', updateStreakDisplay);
-
-        // Function to display history
+        // Function to display user input history
         function displayHistory() {
             const historyContainer = document.getElementById('historyContainer');
-            const historyEntries = JSON.parse(localStorage.getItem('history')) || [];
+            const userInputHistory = JSON.parse(localStorage.getItem('userInputHistory')) || [];
 
-            if (historyEntries.length === 0) {
-                historyContainer.innerHTML = "<p>No history available.</p>";
-            } else {
-                historyContainer.innerHTML = historyEntries.map(entry => `<p>${entry}</p>`).join('');
+            // Clear previous history
+            historyContainer.innerHTML = '';
+
+            // Check if there is any history to display
+            if (userInputHistory.length === 0) {
+                historyContainer.innerHTML = '<p>No history available.</p>';
+                return;
             }
+
+            // Loop through the history and display each entry
+            userInputHistory.forEach((entry, index) => {
+                const entryDiv = document.createElement('div');
+                entryDiv.classList.add('history-entry');
+                entryDiv.innerText = `Entry ${index + 1}: ${entry}`;
+                historyContainer.appendChild(entryDiv);
+            });
         }
 
         // Call the function to display history when the page loads
