@@ -17,13 +17,50 @@ function generatePrompt() {
   document.getElementById("prompt").innerText = prompt;
 }
 
-window.onload = function() {
-  generatePrompt();
-  updateStreakDisplay(); // Display the initial streak
-};
+function updateStreakDisplay(streak) {
+  const streakDisplay = document.getElementById('streakDisplay');
+  streakDisplay.textContent = `🔥 ${streak}`;
+}
+
+function countWords(str) {
+  return str.trim() ? str.trim().split(/\s+/).length : 0; // Handle empty strings
+}
+
+function saveInput(input) {
+  const currentDate = new Date().toLocaleDateString(); // Get the current date
+  const historyEntry = {
+    date: currentDate,
+    text: input
+  };
+
+  // Retrieve existing history or initialize an empty array
+  const history = JSON.parse(localStorage.getItem('history')) || [];
+  history.push(historyEntry); // Add the new entry
+  localStorage.setItem('history', JSON.stringify(history)); // Save back to localStorage
+}
+
+function displayHistory() {
+  const historyContainer = document.getElementById('historyContainer');
+  const history = JSON.parse(localStorage.getItem('history')) || [];
+
+  // Clear previous content
+  historyContainer.innerHTML = '';
+
+  // Display each entry
+  history.forEach((entry, index) => {
+    const entryElement = document.createElement('div');
+    entryElement.textContent = `${index + 1}: ${entry.date} - ${entry.text}`; // Format entry
+    historyContainer.appendChild(entryElement);
+  });
+
+  if (history.length === 0) {
+    historyContainer.textContent = 'No history available.';
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  const streakDisplay = document.getElementById('streakDisplay');
+  generatePrompt();
+  
   const streakForm = document.getElementById('streakForm');
   const dailyInput = document.getElementById('dailyInput');
   const errorMessage = document.getElementById('error-message'); // Ensure this element exists in your HTML
@@ -31,29 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let streak = parseInt(localStorage.getItem('streak')) || 0;
   let lastSubmitDate = localStorage.getItem('lastSubmitDate');
 
-  function updateStreak() {
-    const today = new Date().toDateString();
-
-    if (lastSubmitDate === today) {
-      // No change to streak
-    } else if (lastSubmitDate && new Date(today) - new Date(lastSubmitDate) === 86400000) {
-      streak += 1; // Increment streak for consecutive days
-    } else {
-      streak = 1; // Reset streak if not consecutive
-    }
-
-    localStorage.setItem('streak', streak);
-    localStorage.setItem('lastSubmitDate', today);
-    updateStreakDisplay();
-  }
-
-  function updateStreakDisplay() {
-    streakDisplay.textContent = `🔥 ${streak}`;
-  }
-
-  function countWords(str) {
-    return str.trim() ? str.trim().split(/\s+/).length : 0; // Handle empty strings
-  }
+  updateStreakDisplay(streak); // Display the initial streak
 
   streakForm.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -66,56 +81,26 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       errorMessage.style.display = 'none';
       saveInput(dailyInputValue); // Save input if valid
-      updateStreak(); // Update the streak
+      updateStreak(dailyInputValue); // Update the streak
       streakForm.reset(); // Clear the input field
     }
   });
 
-  function saveInput(input) {
-    const currentDate = new Date().toLocaleDateString(); // Get the current date
-    const historyEntry = {
-      date: currentDate,
-      text: input
-    };
+  function updateStreak(input) {
+    const today = new Date().toDateString();
 
-    // Retrieve existing history or initialize an empty array
-    const history = JSON.parse(localStorage.getItem('history')) || [];
-    history.push(historyEntry); // Add the new entry
-    localStorage.setItem('history', JSON.stringify(history)); // Save back to localStorage
-  }
-});
-
-// Function to handle form submission
-function handleFormSubmit(event) {
-    event.preventDefault();
-    const userInput = document.getElementById('userInputField').value; // Input field ID
-    const history = JSON.parse(localStorage.getItem('history')) || [];
-    history.push(userInput);
-    localStorage.setItem('history', JSON.stringify(history));
-    document.getElementById('userInputField').value = ''; // Clear input field
-}
-
-// Function to display saved prompts in history.html
-function displayHistory() {
-    const historyContainer = document.getElementById('historyContainer');
-    const history = JSON.parse(localStorage.getItem('history')) || [];
-
-    // Clear previous content
-    historyContainer.innerHTML = '';
-
-    // Display each prompt
-    history.forEach((entry, index) => {
-        const entryElement = document.createElement('div');
-        entryElement.textContent = `${index + 1}: ${entry}`; // Format entry
-        historyContainer.appendChild(entryElement);
-    });
-
-    if (history.length === 0) {
-        historyContainer.textContent = 'No history available.';
+    if (lastSubmitDate === today) {
+      // No change to streak
+    } else if (lastSubmitDate && new Date(today) - new Date(lastSubmitDate) === 86400000) {
+      streak += 1; // Increment streak for consecutive days
+    } else {
+      streak = 1; // Reset streak if not consecutive
     }
-}
 
-// Call displayHistory when the page loads
-window.onload = function() {
-    displayHistory();
-};
+    localStorage.setItem('streak', streak);
+    localStorage.setItem('lastSubmitDate', today);
+    updateStreakDisplay(streak);
+  }
+
+  displayHistory(); // Call displayHistory when the page loads
+});
